@@ -327,10 +327,10 @@ require('lazy').setup({
         },
         claude = {
           endpoint = "https://api.anthropic.com",
-          model = "claude-3-5-sonnet-20241022",
+          model = "claude-sonnet-4-20250514",
           extra_request_body = {
             temperature = 0,
-            max_tokens = 4096,
+            max_tokens = 8192,
           },
         },
       },
@@ -728,6 +728,7 @@ require('mason-lspconfig').setup {
     function(server_name)
       local server = servers[server_name] or {}
       server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+      server.on_attach = on_attach
       require('lspconfig')[server_name].setup(server)
     end,
   },
