@@ -76,7 +76,26 @@ require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
-  'github/copilot.vim',
+  { 'zbirenbaum/copilot.lua',
+    opts = {
+      suggestion = {
+        enabled = true,
+        auto_trigger = true,
+        hide_during_completion = true,
+        keymap = {
+          next = "<M-]>",
+          prev = "<M-[>",
+        },
+      },
+      panel = {
+        enabled = false
+      },
+      filetypes = {
+        markdown = true,
+        help = true,
+      },
+    },
+  },
 
   -- NOTE: This is where your plugins related to LSP can be installed.
   --  The configuration is done below. Search for lspconfig to find it below.
@@ -312,8 +331,7 @@ require('lazy').setup({
     lazy = false,
     version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
     opts = {
-      -- add any opts here
-      -- for example
+      mode = "legacy",
       provider = "claude",
       providers = {
         openai = {
@@ -327,7 +345,15 @@ require('lazy').setup({
         },
         claude = {
           endpoint = "https://api.anthropic.com",
-          model = "claude-sonnet-4-20250514",
+          model = "claude-3-5-haiku-20241022",
+          extra_request_body = {
+            temperature = 0,
+            max_tokens = 8192,
+          },
+        },
+        gemini = {
+          endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
+          model = "gemini-2.5-flash-preview-05-20",
           extra_request_body = {
             temperature = 0,
             max_tokens = 8192,
@@ -431,6 +457,8 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
+
+vim.o.laststatus = 3
 
 -- [[ Basic Keymaps ]]
 
