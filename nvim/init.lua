@@ -228,7 +228,7 @@ require('lazy').setup({
     "nvim-lualine/lualine.nvim",
     opts = {
       options = {
-        theme = "catppuccin",
+        theme = "catppuccin-macchiato",
         icons_enabled = false,
         component_separators = "|",
         section_separators = { left = "", right = "" },
@@ -345,7 +345,7 @@ require('lazy').setup({
         },
         claude = {
           endpoint = "https://api.anthropic.com",
-          model = "claude-3-5-haiku-20241022",
+          model = "claude-haiku-4-5-20251001",
           extra_request_body = {
             temperature = 0,
             max_tokens = 8192,
